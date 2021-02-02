@@ -156,7 +156,7 @@ class DataDestination:
                 'description': i.description,
                 'labels': i.labels,
                 'links': json.dumps(i.links),
-                'components': i.components,
+                'components': [c.name for c in i.components],
                 'custom_fields': json.dumps(i.custom_fields),
             })
 
