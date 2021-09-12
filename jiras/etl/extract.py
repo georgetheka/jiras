@@ -10,7 +10,7 @@ def make_jira_client(settings: Settings):
     return JiraDataSource(
         j=JIRA(
             settings.jira_server,
-            auth=(settings.jira_user, settings.jira_pass),
+            basic_auth=(settings.jira_user, settings.jira_pass),
         ),
     )
 

@@ -21,8 +21,8 @@ def _parse_issue_changelog(issue) -> List[Event]:
 
     changelog: List[Event] = [
         Event(
-            reporter=issue.fields.reporter.displayName,
-            reporter_id=issue.fields.reporter.key,
+            reporter=issue.fields.reporter.displayName if issue.fields.reporter else '',
+            reporter_id=issue.fields.reporter.key if issue.fields.reporter else '',
             assignee=None,
             assignee_id=None,
             field=Field.Created,
@@ -133,8 +133,8 @@ def parse_jira_issue(issue: Any) -> JiraIssue:
         ],
         due_date=f.duedate,
         project=f.project.key,
-        reporter=f.reporter.displayName if f.reporter else None,
-        reporter_id=f.reporter.key if f.reporter else None,
+        reporter=f.reporter.displayName if f.reporter else '',
+        reporter_id=f.reporter.key if f.reporter else '',
         summary=f.summary,
         updated=_parse_datetime(f.updated) if f.updated else None,
         resolved=_parse_datetime(f.resolutiondate) if f.resolutiondate else None,
